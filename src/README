@@ -1,0 +1,12 @@
+-- HOW TO COMPILE
+In this directory(HW2/src), enter following command:
+    $ make
+It will generate an executable file, "two-way_min-cut_parition".
+If you want to remove executable file, enter following command:
+    $ make clean
+
+-- HOW TO RUN
+Usage:
+    ./two-way_min-cut_partition <path/to/cells_file> <path/to/nets_file> <path/to/output_file>
+e.g.:
+    ./two-way_min-cut_partition ../testcases/p2-1.cells ../testcases/p2-1.nets ../output/p2-1.out
