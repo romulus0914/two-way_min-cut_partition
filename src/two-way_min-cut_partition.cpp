@@ -241,19 +241,17 @@ void Iteration(int max_gain, vector<unordered_set<int>> &gain_bucket)
         // total # cells moves
         for (int i = 0; i < num_cells; i++) {
             int base_cell = -1;
-            int min_area_diff = total_area;
+            int area_diff;
             while (base_cell == -1) {
-                min_area_diff = total_area;
-                int area_diff;
-			    for (int j : gain_bucket_temp[max_gain]) {
+		for (int j : gain_bucket_temp[max_gain]) {
                     if (cells_block_temp[j] == 0)
                         area_diff = abs((A_area_temp - cells_area[j]) - (B_area_temp + cells_area[j]));
                     else
                         area_diff = abs((A_area_temp + cells_area[j]) - (B_area_temp - cells_area[j]));
 
-                    if (area_diff < area_constraint && area_diff < min_area_diff) {
-                        min_area_diff = area_diff;
+                    if (area_diff < area_constraint) {
                         base_cell = j;
+			break;
                     }
                 }
 
@@ -268,7 +266,7 @@ void Iteration(int max_gain, vector<unordered_set<int>> &gain_bucket)
 
             // shift back to original distribution (-pmax ~ pmax)
             gains.emplace_back(max_gain - p_max);
-            area_diffs.emplace_back(min_area_diff);
+            area_diffs.emplace_back(area_diff);
             moved_cells.emplace_back(base_cell);
 
             UpdateGain(base_cell, cells_lock_temp, A_temp, B_temp, nets_distribution_temp, gain_bucket_temp, cells_gain_temp);
