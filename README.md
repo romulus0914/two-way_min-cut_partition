@@ -1,3 +1,3 @@
-# Two Way Min Cut Partition
+# Two-Way Min-Cut Partition
 
-two way min cut partition implemented in FM algorithm
+two way min-cut partition implemented in FM algorithm
